@@ -1,0 +1,44 @@
+package com.hhs.jade.demo.stageextra;
+
+import com.badlogic.gdx.math.MathUtils;
+import com.hhs.jade.game.Operator;
+import com.hhs.jade.util.B;
+import com.hhs.jade.util.J;
+import com.hhs.jade.game.operator.Acceleration;
+import com.hhs.jade.game.operator.AngularVelocity;
+import com.hhs.jade.game.task.BasicTask;
+
+public class StageExtraMid2 extends BasicTask {
+
+	@Override
+	public void init() {
+		super.init();
+		J.addOperator(0, new AngularVelocity(0.5f, 720));
+		Operator tmp = J.addOperator(0, new Acceleration(-0.03f, 0.3f));
+		setUpdateFunc((frame) -> {
+			if (frame >= 15 * 60) {
+				terminate();
+				J.clearOperators();
+				return;
+			}
+			if (frame == 8 * 60) {
+				J.removeOperator(0, tmp);
+				J.addOperator(0, new Acceleration(0.03f, 2f));
+			}
+			if (frame == 12 * 60) {
+				J.clearOperators();
+			}
+			if (frame <= 5 * 60 && frame % 40 == 0) {
+				genCircle(-50, -50, 4, MathUtils.random(-50, 50), 60, 9 + frame % 7);
+				genCircle(50, -50, 4, MathUtils.random(-50, 50), 60, 9 + frame % 7);
+			}
+		});
+	}
+
+	private void genCircle(float x, float y, float speed, float off, int cnt, int bullet) {
+		for (int i = 0; i < cnt; i++) {
+			B.create(x, y, i * 360f / cnt + off, speed, bullet, 0);
+		}
+	}
+
+}
