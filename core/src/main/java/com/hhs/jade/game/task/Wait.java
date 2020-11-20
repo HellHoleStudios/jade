@@ -27,33 +27,33 @@ import com.hhs.jade.game.Task;
 
 public class Wait implements Task {
 
-	private int frameCount;
-	private int firstFrame;
-	private boolean finished;
+    private int frameCount;
+    private int firstFrame;
+    private boolean finished;
 
-	public Wait(int frameCount) {
-		this.frameCount = frameCount;
-	}
+    public Wait(int frameCount) {
+        this.frameCount = frameCount;
+    }
 
-	@Override
-	public boolean isFinished() {
-		return finished;
-	}
+    @Override
+    public boolean isFinished() {
+        return finished;
+    }
 
-	@Override
-	public void update(int frame) {
-		if (firstFrame == -1) {
-			firstFrame = frame;
-		}
-		if (frame - firstFrame >= frameCount) {
-			finished = true;
-		}
-	}
+    @Override
+    public void update(int frame) {
+        if (firstFrame == -1) {
+            firstFrame = frame;
+        }
+        if (frame - firstFrame >= frameCount) {
+            finished = true;
+        }
+    }
 
-	@Override
-	public void init() {
-		this.finished = false;
-		this.firstFrame = -1;
-	}
+    @Override
+    public void init() {
+        this.finished = false;
+        this.firstFrame = -1;
+    }
 
 }

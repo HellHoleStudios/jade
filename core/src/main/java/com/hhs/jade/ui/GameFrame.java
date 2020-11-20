@@ -31,37 +31,37 @@ import com.hhs.jade.util.J;
 
 public class GameFrame extends Actor {
 
-	private static final Color tempColor1 = new Color(), tempColor2 = new Color();
+    private static final Color tempColor1 = new Color(), tempColor2 = new Color();
 
-	private Jade jade;
+    private Jade jade;
 
-	public GameFrame() {
+    public GameFrame() {
 
-	}
+    }
 
-	public GameFrame(Jade jade) {
-		this.jade = jade;
-	}
+    public GameFrame(Jade jade) {
+        this.jade = jade;
+    }
 
-	public void setJade(Jade jade) {
-		this.jade = jade;
-	}
+    public void setJade(Jade jade) {
+        this.jade = jade;
+    }
 
-	@Override
-	public void draw(Batch batch, float parentAlpha) {
-		if (jade == null)
-			jade = J.getSession();
-		if (jade != null) {
-			tempColor1.set(batch.getColor());
-			tempColor2.set(getColor());
-			tempColor2.a *= parentAlpha;
-			batch.setColor(tempColor2);
-			batch.draw(jade.getFrameTexture(), getX(), getY(), getOriginX(), getOriginY(), getWidth(), getHeight(),
-					getScaleX(), getScaleY(), getRotation());
-			if(jade.bossScene!=null) {
-				jade.bossScene.draw(batch,parentAlpha);
-			}
-			batch.setColor(tempColor1);
-		}
-	}
+    @Override
+    public void draw(Batch batch, float parentAlpha) {
+        if (jade == null)
+            jade = J.getSession();
+        if (jade != null) {
+            tempColor1.set(batch.getColor());
+            tempColor2.set(getColor());
+            tempColor2.a *= parentAlpha;
+            batch.setColor(tempColor2);
+            batch.draw(jade.getFrameTexture(), getX(), getY(), getOriginX(), getOriginY(), getWidth(), getHeight(),
+                    getScaleX(), getScaleY(), getRotation());
+            if (jade.bossScene != null) {
+                jade.bossScene.draw(batch, parentAlpha);
+            }
+            batch.setColor(tempColor1);
+        }
+    }
 }

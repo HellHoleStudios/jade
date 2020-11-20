@@ -28,19 +28,19 @@ import com.hhs.jade.util.J;
 
 public class ClearBullets implements Task {
 
-	@Override
-	public boolean isFinished() {
-		return true;
-	}
+    @Override
+    public boolean isFinished() {
+        return true;
+    }
 
-	@Override
-	public void update(int t) {
-		J.clearBullets(true);
-	}
+    @Override
+    public void update(int t) {
+        J.clearBullets(true);
+    }
 
-	@Override
-	public void init() {
-		
-	}
+    @Override
+    public void init() {
+
+    }
 
 }

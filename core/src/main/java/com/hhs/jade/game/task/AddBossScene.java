@@ -29,34 +29,34 @@ import com.hhs.jade.util.J;
 
 /**
  * A task that initalize the boss scene and add it to Jade
- * @author think
  *
+ * @author think
  */
 public class AddBossScene implements Task {
 
-	public BossScene scene;
+    public BossScene scene;
 
-	public AddBossScene(BossScene scene) {
-		this.scene=scene;
-	}
+    public AddBossScene(BossScene scene) {
+        this.scene = scene;
+    }
 
-	@Override
-	public boolean isFinished() {
-		return true;
-	}
+    @Override
+    public boolean isFinished() {
+        return true;
+    }
 
-	@Override
-	public void update(int t) {
-		if(J.getSession().bossScene!=null) {
-			throw new RuntimeException("Boss Scene Already Exists!");
-		}
-		scene.init();
-		J.getSession().bossScene=scene;
-	}
+    @Override
+    public void update(int t) {
+        if (J.getSession().bossScene != null) {
+            throw new RuntimeException("Boss Scene Already Exists!");
+        }
+        scene.init();
+        J.getSession().bossScene = scene;
+    }
 
-	@Override
-	public void init() {
-		
-	}
+    @Override
+    public void init() {
+
+    }
 
 }

@@ -29,25 +29,25 @@ import com.hhs.jade.util.J;
 
 public class AddDrawable implements Task {
 
-	public Drawable drawable;
+    public Drawable drawable;
 
-	public AddDrawable(Drawable drawable) {
-		this.drawable = drawable;
-	}
+    public AddDrawable(Drawable drawable) {
+        this.drawable = drawable;
+    }
 
-	@Override
-	public boolean isFinished() {
-		return true;
-	}
+    @Override
+    public boolean isFinished() {
+        return true;
+    }
 
-	@Override
-	public void update(int t) {
-		J.addDrawable(drawable);
-	}
+    @Override
+    public void update(int t) {
+        J.addDrawable(drawable);
+    }
 
-	@Override
-	public void init() {
+    @Override
+    public void init() {
 
-	}
+    }
 
 }

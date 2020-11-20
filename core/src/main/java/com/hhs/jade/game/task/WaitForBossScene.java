@@ -28,19 +28,19 @@ import com.hhs.jade.util.J;
 
 public class WaitForBossScene implements Task {
 
-	@Override
-	public boolean isFinished() {
-		return J.getSession().bossScene==null;
-	}
+    @Override
+    public boolean isFinished() {
+        return J.getSession().bossScene == null;
+    }
 
-	@Override
-	public void update(int t) {
+    @Override
+    public void update(int t) {
 
-	}
+    }
 
-	@Override
-	public void init() {
+    @Override
+    public void init() {
 
-	}
+    }
 
 }

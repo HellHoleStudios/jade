@@ -29,16 +29,16 @@ import com.hhs.jade.game.task.Sequence;
 
 public class DifficultyRegular extends Sequence {
 
-	private int difficulty;
+    private int difficulty;
 
-	public DifficultyRegular(int difficulty) {
-		super();
-		this.difficulty = difficulty;
-	}
+    public DifficultyRegular(int difficulty) {
+        super();
+        this.difficulty = difficulty;
+    }
 
-	@Override
-	public void init() {
-		super.init();
-		add(J.diffSelect(difficulty, new Stage1(), new Stage1(), new Stage1(), new Stage1()));
-	}
+    @Override
+    public void init() {
+        super.init();
+        add(J.diffSelect(difficulty, new Stage1(), new Stage1(), new Stage1(), new Stage1()));
+    }
 }

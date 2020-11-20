@@ -28,18 +28,18 @@ import com.hhs.jade.util.U;
 
 public class KeyListener extends InputAdapter {
 
-	private Runnable runnable;
-	private int[] keycodes;
+    private Runnable runnable;
+    private int[] keycodes;
 
-	public KeyListener(int[] keycodes, Runnable runnable) {
-		this.runnable = runnable;
-		this.keycodes = keycodes;
-	}
+    public KeyListener(int[] keycodes, Runnable runnable) {
+        this.runnable = runnable;
+        this.keycodes = keycodes;
+    }
 
-	public boolean keyDown(int keycode) {
-		if (U.matchKey(keycode, keycodes)) {
-			runnable.run();
-		}
-		return false;
-	}
+    public boolean keyDown(int keycode) {
+        if (U.matchKey(keycode, keycodes)) {
+            runnable.run();
+        }
+        return false;
+    }
 }

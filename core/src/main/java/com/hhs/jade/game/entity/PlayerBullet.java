@@ -29,59 +29,58 @@ import com.hhs.jade.util.J;
 
 /**
  * Player Bullet base class
- * 
- * @author XGN
  *
+ * @author XGN
  */
 public class PlayerBullet extends Bullet {
 
-	/**
-	 * The number of times the bullet can damage enemies. <br/>
-	 * Calculated each frame. <br/>
-	 */
-	public int penetration;
+    /**
+     * The number of times the bullet can damage enemies. <br/>
+     * Calculated each frame. <br/>
+     */
+    public int penetration;
 
-	/**
-	 * The damage <b>each</b> penetration.
-	 */
-	public float damage;
+    /**
+     * The damage <b>each</b> penetration.
+     */
+    public float damage;
 
-	public PlayerBullet() {
-		super();
-	}
+    public PlayerBullet() {
+        super();
+    }
 
-	public PlayerBullet(BulletData data, int tag, int penetration, float damage) {
-		super(data, tag);
-		this.penetration = penetration;
-		this.damage = damage;
-	}
+    public PlayerBullet(BulletData data, int tag, int penetration, float damage) {
+        super(data, tag);
+        this.penetration = penetration;
+        this.damage = damage;
+    }
 
-	@Override
-	public boolean checkCollision() {
+    @Override
+    public boolean checkCollision() {
 
-		boolean hit = false;
+        boolean hit = false;
 
-		for (int i = 0; i < J.getEnemies().size(); i++) {
-			Enemy e = J.getEnemies().get(i);
-			if (e == null) {
-				continue;
-			}
-			if (penetration == 0) { // can't go forward anymore
-				J.remove(this);
-				return hit;
-			}
-			if (collide(e)) {
-				hit = true;
-				e.onHit(damage);
-				penetration--;
-				J.getEM().onEnemyDamage(this,e);
-			}
-		}
+        for (int i = 0; i < J.getEnemies().size(); i++) {
+            Enemy e = J.getEnemies().get(i);
+            if (e == null) {
+                continue;
+            }
+            if (penetration == 0) { // can't go forward anymore
+                J.remove(this);
+                return hit;
+            }
+            if (collide(e)) {
+                hit = true;
+                e.onHit(damage);
+                penetration--;
+                J.getEM().onEnemyDamage(this, e);
+            }
+        }
 
-		return hit;
-	}
+        return hit;
+    }
 
-	public boolean collide(Enemy e) {
-		return Collision.collide(this, e);
-	}
+    public boolean collide(Enemy e) {
+        return Collision.collide(this, e);
+    }
 }

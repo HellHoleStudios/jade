@@ -28,9 +28,9 @@ import com.hhs.jade.game.task.Sequence;
 
 public class DifficultyExtra extends Sequence {
 
-	@Override
-	public void init() {
-		super.init();
-		add(new StageExtra());
-	}
+    @Override
+    public void init() {
+        super.init();
+        add(new StageExtra());
+    }
 }

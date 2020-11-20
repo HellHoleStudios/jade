@@ -28,20 +28,20 @@ import com.hhs.jade.game.entity.Bullet;
 
 public class BasicOperator implements Operator {
 
-	private Appliable appliable;
+    private Appliable appliable;
 
-	public BasicOperator(Appliable appliable) {
-		this.appliable = appliable;
-	}
+    public BasicOperator(Appliable appliable) {
+        this.appliable = appliable;
+    }
 
-	@Override
-	public void apply(Bullet bullet, int t) {
-		appliable.apply(bullet, t);
-	}
+    @Override
+    public void apply(Bullet bullet, int t) {
+        appliable.apply(bullet, t);
+    }
 
-	@FunctionalInterface
-	public static interface Appliable {
-		public void apply(Bullet bullet, int t);
-	}
+    @FunctionalInterface
+    public static interface Appliable {
+        public void apply(Bullet bullet, int t);
+    }
 
 }

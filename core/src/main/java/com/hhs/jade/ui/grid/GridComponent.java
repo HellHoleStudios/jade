@@ -24,29 +24,29 @@
 package com.hhs.jade.ui.grid;
 
 public interface GridComponent {
-	public GridComponent setParent(Grid parent);
-	
-	public Grid getPartent();
-	
-	public GridComponent activate();
+    public GridComponent setParent(Grid parent);
 
-	public GridComponent deactivate();
+    public Grid getPartent();
 
-	public GridComponent enable();
+    public GridComponent activate();
 
-	public GridComponent disable();
+    public GridComponent deactivate();
 
-	public boolean isActive();
-	
-	public boolean isEnabled();
+    public GridComponent enable();
 
-	public void update();
+    public GridComponent disable();
 
-	public int getGridX();
+    public boolean isActive();
 
-	public int getGridY();
+    public boolean isEnabled();
 
-	public void trigger();
-	
-	public boolean hasSound();
+    public void update();
+
+    public int getGridX();
+
+    public int getGridY();
+
+    public void trigger();
+
+    public boolean hasSound();
 }
