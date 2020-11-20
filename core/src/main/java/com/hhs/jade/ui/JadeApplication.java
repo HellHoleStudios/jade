@@ -75,8 +75,10 @@ public class JadeApplication implements ApplicationListener {
 
 		onStart();
 
-		AutoLoader autoLoader = new AutoLoader();
-		autoLoader.load();
+		if(U.config().autoload) {
+			AutoLoader autoLoader = new AutoLoader();
+			autoLoader.load();
+		}
 	}
 
 	@Override
@@ -128,7 +130,9 @@ public class JadeApplication implements ApplicationListener {
 		st.act(U.safeDeltaTime());
 		st.draw();
 
-		sync.sync(U.config().fps);
+		if(sync!=null){
+			sync.sync(U.config().fps);
+		}
 	}
 
 	@Override

@@ -11,8 +11,10 @@ public class Config {
 	public static Config config;
 
 	public int logLevel;
+	public boolean autoload;
 
 	public int fps;
+	public int fpsLimit;
 	public boolean vsyncEnabled;
 	public String windowTitle;
 	public float screenWidth;
@@ -70,10 +72,11 @@ public class Config {
 
 	public void setDefault() {
 		logLevel = Logger.DEBUG;
+		autoload = true;
 
 		fps = 60;
+		fpsLimit = 0;
 		vsyncEnabled = true;
-
 		windowTitle = "\u6771\u65b9\u8abf\u8a66\u796d\u3000\uff5e Demonstration of the Jade Engine.";
 		screenWidth = 1280;
 		screenHeight = 960;
