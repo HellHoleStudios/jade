@@ -48,47 +48,53 @@ import com.hhs.jade.game.shot.ShotSheetLoader;
 
 public class A {
 
-    public static AssetManager am;
+    private static A self;
 
-    private static ObjectMap<Texture, String> textureReflect;
-    private static ObjectMap<String, BitmapFont> fontCache;
+    public AssetManager am;
+
+    private ObjectMap<Texture, String> textureReflect;
+    private ObjectMap<String, BitmapFont> fontCache;
+
+    private A() {
+        am = new AssetManager();
+        am.getLogger().setLevel(U.config().logLevel);
+        am.setLoader(FreeTypeFontGenerator.class, new FreeTypeFontGeneratorLoader(new InternalFileHandleResolver()));
+        am.setLoader(ShotSheet.class, new ShotSheetLoader(new InternalFileHandleResolver()));
+
+        fontCache = new ObjectMap<String, BitmapFont>();
+        textureReflect = new ObjectMap<Texture, String>();
+    }
 
     public static void init() {
-        A.am = new AssetManager();
-        A.am.getLogger().setLevel(U.config().logLevel);
-        A.am.setLoader(FreeTypeFontGenerator.class, new FreeTypeFontGeneratorLoader(new InternalFileHandleResolver()));
-        A.am.setLoader(ShotSheet.class, new ShotSheetLoader(new InternalFileHandleResolver()));
-
-        A.fontCache = new ObjectMap<String, BitmapFont>();
-        A.textureReflect = new ObjectMap<Texture, String>();
+        self = new A();
     }
 
     public static <T> T get(String fileName) {
-        return am.get(fileName);
+        return self.am.get(fileName);
     }
 
     public static <T> T get(String fileName, Class<T> type) {
-        return am.get(fileName, type);
+        return self.am.get(fileName, type);
     }
 
     public static Texture getTexture(String fileName) {
-        return am.get(fileName, Texture.class);
+        return self.am.get(fileName, Texture.class);
     }
 
     public static <T> TextureRegion getRegion(String fileName) {
-        T tmp = am.get(fileName);
+        T tmp = self.am.get(fileName);
         if (tmp instanceof TextureRegion) {
             return (TextureRegion) tmp;
         } else if (tmp instanceof Texture) {
             return new TextureRegion((Texture) tmp);
         } else {
-            A.am.getLogger().error("[A] getRegion() requires a Texture-like asset!");
+            self.am.getLogger().error("[A] getRegion() requires a Texture-like asset!");
             return (TextureRegion) tmp;
         }
     }
 
     public static void load(String fileName) {
-        String extension = am.getFileHandleResolver().resolve(fileName).extension();
+        String extension = self.am.getFileHandleResolver().resolve(fileName).extension();
         if ("png".equals(extension))
             load(fileName, Texture.class, defaultTextureParameter());
         else if ("jpg".equals(extension))
@@ -118,57 +124,55 @@ public class A {
     }
 
     public static <T> void load(String fileName, Class<T> type) {
-        if (am.isLoaded(fileName, type)) {
-            am.getLogger().debug("[A] " + fileName + " Already loaded, aborting.");
+        if (self.am.isLoaded(fileName, type)) {
+            self.am.getLogger().debug("[A] " + fileName + " Already loaded, aborting.");
         }
         if (type == Texture.class) {
             AssetLoaderParameters<T> parameter = new AssetLoaderParameters<T>();
             parameter.loadedCallback = new TextureReflectCallback();
-            am.load(fileName, type, parameter);
+            self.am.load(fileName, type, parameter);
         } else {
-            am.load(fileName, type);
+            self.am.load(fileName, type);
         }
     }
 
     public static <T> void load(String fileName, Class<T> type, AssetLoaderParameters<T> parameter) {
-        if (am.isLoaded(fileName, type)) {
-            am.getLogger().debug("[A] " + fileName + " Already loaded, aborting.");
+        if (self.am.isLoaded(fileName, type)) {
+            self.am.getLogger().debug("[A] " + fileName + " Already loaded, aborting.");
             return;
         }
         if (type == Texture.class) {
             LoadedCallback tmp = parameter.loadedCallback;
             parameter.loadedCallback = new TextureReflectCallback(tmp);
-            am.load(fileName, type, parameter);
-        } else {
-            am.load(fileName, type, parameter);
         }
+        self.am.load(fileName, type, parameter);
     }
 
     public static boolean isLoaded(String fileName) {
-        return am.isLoaded(fileName);
+        return self.am.isLoaded(fileName);
     }
 
     public static <T> boolean isLoaded(String fileName, Class<T> type) {
-        return am.isLoaded(fileName, type);
+        return self.am.isLoaded(fileName, type);
     }
 
     public static void finishLoading() {
-        am.finishLoading();
+        self.am.finishLoading();
     }
 
     public static void update() {
-        am.update();
+        self.am.update();
     }
 
     public static void update(int times) {
         for (int i = 0; i < times; i++) {
-            am.update();
+            self.am.update();
         }
     }
 
     public static void dispose() {
-        A.am.dispose();
-        for (BitmapFont font : A.fontCache.values()) {
+        self.am.dispose();
+        for (BitmapFont font : self.fontCache.values()) {
             font.dispose();
         }
     }
@@ -180,8 +184,8 @@ public class A {
             tmp.append(borderWidth).append(':').append(borderColor.toString());
         }
         String key = tmp.toString();
-        if (fontCache.containsKey(key)) {
-            return fontCache.get(key);
+        if (self.fontCache.containsKey(key)) {
+            return self.fontCache.get(key);
         }
         FreeTypeFontGenerator generator = get(name);
         FreeTypeFontParameter parameter = new FreeTypeFontParameter();
@@ -194,7 +198,7 @@ public class A {
         parameter.minFilter = U.config().textureMinFilter;
         parameter.magFilter = U.config().textureMagFilter;
         BitmapFont font = generator.generateFont(parameter);
-        fontCache.put(key, font);
+        self.fontCache.put(key, font);
         return font;
     }
 
@@ -234,8 +238,8 @@ public class A {
     }
 
     public static void putTextureReflect(Texture texture, String fileName) {
-        am.getLogger().debug("[A] Texture reflect info: " + texture.hashCode() + " <- " + fileName);
-        A.textureReflect.put(texture, fileName);
+        self.am.getLogger().debug("[A] Texture reflect info: " + texture.hashCode() + " <- " + fileName);
+        self.textureReflect.put(texture, fileName);
     }
 
     private static class TextureReflectCallback implements LoadedCallback {

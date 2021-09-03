@@ -25,10 +25,10 @@ package com.hhs.jade.demo.stage1;
 
 import com.badlogic.gdx.utils.Array;
 import com.hhs.jade.game.BossScene;
-import com.hhs.jade.util.A;
-import com.hhs.jade.util.J;
 import com.hhs.jade.game.entity.Enemy;
 import com.hhs.jade.game.task.Spellcard;
+import com.hhs.jade.util.A;
+import com.hhs.jade.util.J;
 
 public class Stage1BossScene extends BossScene {
 

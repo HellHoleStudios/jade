@@ -81,7 +81,7 @@ public class OptionScreen extends BasicScreen {
 
         final GridButton tmpButton1 = new GridButton("S.E. Vol", 48, 740, 280, 200, 60, 0, 1, null);
         tmpButton1.setActiveAction(() -> Actions.parallel(
-                Actions.sequence(Actions.show(), Actions.color(Color.WHITE),
+                Actions.sequence(Actions.color(Color.WHITE),
                         Actions.moveTo(tmpButton1.staticX + 2, tmpButton1.staticY, 0.03f, Interpolation.sine),
                         Actions.moveTo(tmpButton1.staticX - 4, tmpButton1.staticY, 0.06f, Interpolation.sine),
                         Actions.moveTo(tmpButton1.staticX, tmpButton1.staticY, 0.03f, Interpolation.sine)),

@@ -99,7 +99,7 @@ public class Config {
 
         fps = 60;
         fpsLimit = 0;
-        vsyncEnabled = true;
+        vsyncEnabled = false;
         windowTitle = "\u6771\u65b9\u8abf\u8a66\u796d\u3000\uff5e Demonstration of the Jade Engine.";
         screenWidth = 1280;
         screenHeight = 960;

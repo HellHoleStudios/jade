@@ -34,16 +34,17 @@ import com.hhs.jade.demo.ui.screen.TitleScreen;
 import com.hhs.jade.music.BackgroundMusic;
 import com.hhs.jade.ui.JadeApplication;
 import com.hhs.jade.ui.screen.BlankScreen;
-import com.hhs.jade.util.A;
-import com.hhs.jade.util.B;
-import com.hhs.jade.util.BGM;
-import com.hhs.jade.util.SE;
-import com.hhs.jade.util.U;
+import com.hhs.jade.util.*;
 
 public class JadeDemoApplication extends JadeApplication {
 
     @Override
     public void onStart() {
+        if (U.config().autoload) {
+            AutoLoader.loadAll("assets");
+            A.finishLoading();
+        }
+
         BGM.register(new BackgroundMusic("mus/Idea12.ogg", 0, 12));
         BGM.register(new BackgroundMusic("mus/E.0109.ogg", 2, 26));
         BGM.register(new BackgroundMusic("mus/Yet Another Tetris (Piano ver.).ogg", 0, Float.MAX_VALUE));

@@ -121,7 +121,7 @@ public class Bullet extends Entity {
         return this;
     }
 
-    public Bullet setRotaion(float degrees) {
+    public Bullet setRotation(float degrees) {
         sprite.setRotation(degrees);
         return this;
     }

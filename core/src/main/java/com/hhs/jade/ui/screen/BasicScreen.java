@@ -63,9 +63,7 @@ public class BasicScreen implements FadeableScreen {
         this.input = new InputMultiplexer();
 
         input.addProcessor(st);
-        input.addProcessor(new KeyListener(U.config().keyCancel, () -> {
-            onQuit();
-        }));
+        input.addProcessor(new KeyListener(U.config().keyCancel, this::onQuit));
 
         U.addProcessor(input);
     }

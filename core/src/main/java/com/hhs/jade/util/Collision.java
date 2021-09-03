@@ -110,6 +110,9 @@ public class Collision {
     }
 
     public static boolean circleCircle(float x1, float y1, float r1, float x2, float y2, float r2) {
+        if(!squareSquare(x1,y1,r1*2,x2,y2,r2*2)){
+            return false;
+        }
         if (M.dist2(x1, y1, x2, y2) <= M.sqr(r1 + r2)) {
             return true;
         }
@@ -117,6 +120,9 @@ public class Collision {
     }
 
     public static boolean circleCircleOrtho(float x1, float y1, float r1, float x2, float y2, float r2) {
+        if(!squareSquare(x1,y1,r1*2,x2,y2,r2*2)){
+            return false;
+        }
         if (M.dist2(x1, y1, x2, y2) <= M.sqr(r1) + M.sqr(r2)) {
             return true;
         }

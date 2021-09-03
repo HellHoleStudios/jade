@@ -24,11 +24,11 @@
 package com.hhs.jade.demo.stage1;
 
 import com.badlogic.gdx.math.MathUtils;
+import com.hhs.jade.game.operator.Acceleration;
+import com.hhs.jade.game.task.BasicTask;
 import com.hhs.jade.util.A;
 import com.hhs.jade.util.B;
 import com.hhs.jade.util.J;
-import com.hhs.jade.game.operator.Acceleration;
-import com.hhs.jade.game.task.BasicTask;
 
 public class Stage1Mid1 extends BasicTask {
 
@@ -64,6 +64,13 @@ public class Stage1Mid1 extends BasicTask {
 
                 J.add(te);
             }
+//            if(frame<100){
+//                for(int i=0;i<1000;i++){
+//                    B.create(0,-50,MathUtils.random(0,360),0.1f,MathUtils.random(1, 8),0);
+//                }
+//            }
+//            System.out.println(J.getBullets().count);
+//            System.out.println(J.getBullets().size());
         });
     }
 

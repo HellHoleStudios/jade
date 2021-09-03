@@ -27,6 +27,7 @@ import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.Input.Keys;
+import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.math.WindowedMean;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.Array;
@@ -97,11 +98,6 @@ public class JadeApplication implements ApplicationListener {
         st.addActor(fps);
 
         onStart();
-
-        if (U.config().autoload) {
-            AutoLoader autoLoader = new AutoLoader();
-            autoLoader.load();
-        }
     }
 
     @Override
