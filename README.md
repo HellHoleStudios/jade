@@ -1,4 +1,8 @@
 # JaDE
+
+**UPD 2021/9/3: This project is succeeded by [Koto](https://github.com/HellHoleStudios/koto)
+which implements all functionalities of Jade and also far superior.**
+
 JaDE (or Jade) is the abbreviation of **Ja**va **D**anmaku **E**ngine.
 
 It's a java framework running on libgdx(base on lwjgl3) intended to create Touhou-like danmaku games.  
